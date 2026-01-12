@@ -1,0 +1,6 @@
+@TRTB4.MMProverbs.WebApi_HostAddress = http://localhost:5144
+
+GET {{TRTB4.MMProverbs.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

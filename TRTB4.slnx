@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="TRTB4.ConsoleApp.Database/TRTB4.ConsoleApp.Database.csproj" Id="489f70b1-bb67-4bdb-9984-40879fa38a88" />
+  <Project Path="TRTB4.ConsoleApp/TRTB4.ConsoleApp.csproj" />
+  <Project Path="TRTB4.MMProverbs.JsonToData/TRTB4.MMProverbs.JsonToData.csproj" Id="76e965fa-bda8-4973-a430-71e58398f298" />
+  <Project Path="TRTB4.MMProverbs.WebApi/TRTB4.MMProverbs.WebApi.csproj" Id="8405c25a-b54a-49ac-a113-9282b6f13952" />
+  <Project Path="TRTB4.WebApi.ConsoleApp/TRTB4.WebApi.ConsoleApp.csproj" Id="50f92ad0-375d-415f-9373-44aca2e8818b" />
+  <Project Path="TRTB4.WebApi.Database/TRTB4.WebApi.Database.csproj" Id="a89806a1-a06f-4c92-8786-0909e5c28181" />
+  <Project Path="TRTB4.WebApi/TRTB4.WebApi.csproj" Id="704cce62-ba3d-420f-a420-9714645729f3" />
+</Solution>
