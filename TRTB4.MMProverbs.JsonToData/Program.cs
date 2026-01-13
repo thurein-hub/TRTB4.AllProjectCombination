@@ -13,6 +13,8 @@ string connectionString = "Server=.;Database=Btach4MiniPOS;User ID=sa;Password=s
 using var connection = new SqlConnection(connectionString);
 await connection.OpenAsync();
 
+
+//Insert MMProverbs Title
 string insertMMProverbsTitleSql = @"
             INSERT INTO Tbl_Mmproverbstitle (TitleId, TitleName)
             VALUES (@TitleId, @TitleName);";
@@ -22,6 +24,8 @@ foreach (var title in data.Tbl_MmProverbsTitle)
    await connection.ExecuteAsync(insertMMProverbsTitleSql, title);
 }
 
+
+//Insert MMProverbs
 string insertMMProverbsSql = @"
             INSERT INTO Tbl_Mmproverbs (TitleId, ProverbId, ProverbName, ProverbDesp)
             VALUES (@TitleId, @ProverbId, @ProverbName, @ProverbDesp);";

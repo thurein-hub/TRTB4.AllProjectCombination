@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using Dapper;
+using System.Data;
 
 namespace TRTB4.MMProverbs.WebApi.Services
 {
@@ -16,15 +17,7 @@ namespace TRTB4.MMProverbs.WebApi.Services
             string titleSql = "SELECT * FROM Tbl_Mmproverbstitle";
             var title = (await _db.QueryAsync<MmproverbstitleDto>(titleSql)).ToList();
 
-            string mmProverbSql = "SELECT * FROM Tbl_Mmproverbs";
-            var mmProverbs = (await _db.QueryAsync<MmproverbsDto>(mmProverbSql)).ToList();
 
-
-            foreach (var t in titleSql)
-            {
-                t.title = mmProverbs.Where(a => a.TitleId == t.TitleId).ToList();
-
-            }
             return new MmProverbTitleResponseModel
             {
                 IsSuccess = true,
@@ -35,52 +28,27 @@ namespace TRTB4.MMProverbs.WebApi.Services
         }
 
 
-        public async Task<MmProverbsResponseModel> GetProverbByIdAsync(int id)
+        public async Task<MmProverbsResponseModel> GetProverbsByIdAsync(int id)
         {
 
-
-            string titleSql = @"
-            SELECT * FROM Tbl_Mmproverbstitle
-            WHERE TitleId = @TitleId";
-
-            var title = await _db.QueryFirstOrDefaultAsync<MmproverbstitleDto>(
-                titleSql,
-                new { TitleId = id }
-            );
-
-            if (title is null)
-            {
-
-                return new MmProverbsResponseModel
-                {
-                    IsSuccess = false,
-                    Message = "Pile not found.",
-
-                };
-            }
             string proverbSql = @"
             SELECT * FROM Tbl_Mmproverbs
             WHERE TitleId = @TitleId";
 
-            var proverb = (await _db.QueryAsync<MmproverbsDto>(
+            var proverbs = (await _db.QueryAsync<MmproverbsDto>(
                 proverbSql,
                 new { TitleId = id }
             )).ToList();
 
-            proverb.Answers = proverb;
 
             return new MmProverbsResponseModel
             {
                 IsSuccess = true,
-                Message = "Pile retrieved successfully.",
-                Data = proverb
+                Message = "PRoverbs retrieved successfully.",
+                Data = proverbs
             };
 
-
-
         }
-
-
 
     }
 
@@ -95,7 +63,7 @@ namespace TRTB4.MMProverbs.WebApi.Services
     {
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
-        public MmproverbsDto Data { get; set; }
+        public List<MmproverbsDto> Data { get; set; }
     }
 
 

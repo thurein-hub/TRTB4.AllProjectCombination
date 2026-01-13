@@ -8,24 +8,23 @@ namespace TRTB4.MMProverbs.WebApi.Controllers
     [ApiController]
     public class MmProverbController : ControllerBase
     {
-        private readonly IMmProverbService _mmProverbeService;
-
-        public MmProverbController(IMmProverbService pickAPileService)
+        private readonly IMmProverbService _mmProverbsService;
+        public MmProverbController(IMmProverbService mmProverbService)
         {
-            _mmProverbeService = pickAPileService;
+            _mmProverbsService = mmProverbService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllTitleAsync()
         {
-            var title = await _mmProverbeService.GetAllTitleAsync();
+            var title = await _mmProverbsService.GetAllTitleAsync();
             return Ok(title);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProverbById(int id)
+        public async Task<IActionResult> GetProverbsByIdAsync(int id)
         {
-            var proverb = await _mmProverbeService.GetProverbByIdAsync(id);
+            var proverb = await _mmProverbsService.GetProverbsByIdAsync(id);
             return Ok(proverb);
         }
     }
