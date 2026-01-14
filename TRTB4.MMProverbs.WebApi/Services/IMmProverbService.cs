@@ -5,5 +5,6 @@ namespace TRTB4.MMProverbs.WebApi.Services
     {
         Task<MmProverbTitleResponseModel> GetAllTitleAsync();
         Task<MmProverbsResponseModel> GetProverbsByIdAsync(int id);
+        Task<SearchMmProverbsResponseModel> SearchProverbsAsync(string searchkeyword);
     }
 }

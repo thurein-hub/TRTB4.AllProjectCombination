@@ -27,5 +27,13 @@ namespace TRTB4.MMProverbs.WebApi.Controllers
             var proverb = await _mmProverbsService.GetProverbsByIdAsync(id);
             return Ok(proverb);
         }
+
+       
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchProverbsAsync(string searchkeyword)
+        {
+            var result = await _mmProverbsService.SearchProverbsAsync(searchkeyword);
+            return Ok(result);
+        }
     }
 }

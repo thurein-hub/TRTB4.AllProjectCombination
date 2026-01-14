@@ -50,6 +50,29 @@ namespace TRTB4.MMProverbs.WebApi.Services
 
         }
 
+        public async Task<SearchMmProverbsResponseModel> SearchProverbsAsync(string searchkeyword)
+        {
+            string searchProverbsql = @"
+                        SELECT * FROM Tbl_Mmproverbs
+                        WHERE ProverbName LIKE '%' + @Keyword + '%'
+                           OR ProverbDesp LIKE '%' + @Keyword + '%'
+                        ";
+
+            var proverbs = (await _db.QueryAsync<MmproverbsDto>(
+                searchProverbsql,
+                new { Keyword = searchkeyword }
+            )).ToList();
+
+
+            return new SearchMmProverbsResponseModel
+            {
+                IsSuccess = true,
+                Message = "Proverbs searched successfully.",
+                Data = proverbs
+            };
+
+        }
+
     }
 
 
@@ -60,6 +83,13 @@ namespace TRTB4.MMProverbs.WebApi.Services
         public List<MmproverbstitleDto> Data { get; set; }
     }
     public class MmProverbsResponseModel
+    {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
+        public List<MmproverbsDto> Data { get; set; }
+    }
+
+    public class SearchMmProverbsResponseModel
     {
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
